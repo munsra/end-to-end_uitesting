@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="deploymentTargetDropDown">
+    <value>
+      <entry key="LoginNavigationE2E">
+        <State />
+      </entry>
+      <entry key="app">
+        <State />
+      </entry>
+      <entry key="loginError()">
+        <State />
+      </entry>
+      <entry key="loginToHome_homeToLoginFlow()">
+        <State />
+      </entry>
+    </value>
+  </component>
+</project>
