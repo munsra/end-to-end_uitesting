@@ -14,13 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import it.pierosilvestri.end_to_end_uitesting.ui.theme.Endtoend_uitestingTheme
 
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
-    viewModel: LoginViewModel = viewModel(),
+    viewModel: LoginViewModel = hiltViewModel(),
     onLoginClick: () -> Unit,
 ) {
     val email = viewModel.email

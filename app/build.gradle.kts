@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -14,7 +16,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "it.pierosilvestri.end_to_end_uitesting.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -59,13 +61,24 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.material3)
     implementation(libs.navigation.compose)
+    implementation(libs.hiltAndroid)
+    implementation(libs.hiltNavigationCompose)
+    kapt(libs.hiltCompiler)
+
+    kaptTest(libs.hiltCompiler)
     testImplementation(libs.junit)
     testImplementation(libs.truth)
+    testImplementation(libs.hiltTesting)
+    testAnnotationProcessor(libs.hiltCompiler)
+
     androidTestImplementation(libs.android.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.hiltTesting)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+    kaptAndroidTest(libs.hiltCompiler)
+    androidTestAnnotationProcessor(libs.hiltCompiler)
 }

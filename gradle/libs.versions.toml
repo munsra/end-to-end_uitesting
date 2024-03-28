@@ -1,16 +1,23 @@
 [versions]
+
+androidBuildToolVersion = "8.2.2"
+kotlinGradlePluginVersion = "1.9.0"
 core-ktx = "1.12.0"
 lifecycle-runtime-ktx = "2.7.0"
 activity-compose = "1.8.2"
 junit = "4.13.2"
-compose-bom = "2023.08.00"
+compose-bom = "2024.03.00"
 android-junit = "1.1.5"
 espresso-core = "3.5.1"
 navigation-compose = "2.7.7"
 truthVersion = "1.1.3"
+daggerVersion = "2.51"
+hiltNavigationComposeVersion = "1.2.0"
 
 
 [libraries]
+androidBuildTools = { module = "com.android.tools.build:gradle", version.ref = "androidBuildToolVersion" }
+kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePluginVersion" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
 lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
@@ -27,3 +34,8 @@ ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
 truth = { module = "com.google.truth:truth", version.ref = "truthVersion"}
+hiltAndroidGradle = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "daggerVersion" }
+hiltAndroid = { module = "com.google.dagger:hilt-android", version.ref = "daggerVersion"}
+hiltCompiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "daggerVersion"}
+hiltNavigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationComposeVersion"}
+hiltTesting = { module = "com.google.dagger:hilt-android-testing", version.ref = "daggerVersion" }

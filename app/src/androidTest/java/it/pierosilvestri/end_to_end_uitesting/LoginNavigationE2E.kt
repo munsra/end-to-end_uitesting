@@ -12,34 +12,64 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.common.truth.Truth.assertThat
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import it.pierosilvestri.end_to_end_uitesting.ui.presentation.navigation.AppNavHost
 import it.pierosilvestri.end_to_end_uitesting.ui.presentation.navigation.NavigationItem
+import it.pierosilvestri.end_to_end_uitesting.ui.presentation.screens.HomeScreen
+import it.pierosilvestri.end_to_end_uitesting.ui.presentation.screens.login.LoginScreen
+import it.pierosilvestri.end_to_end_uitesting.ui.presentation.screens.login.LoginViewModel
 import it.pierosilvestri.end_to_end_uitesting.ui.theme.Endtoend_uitestingTheme
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+@HiltAndroidTest
 class LoginNavigationE2E {
 
     @get:Rule
-    val composeRule = createAndroidComposeRule<MainActivity>()
+    val hiltRule = HiltAndroidRule(this)
 
+    @get:Rule
+    val composeRule = createAndroidComposeRule<MainActivity>()
+    private lateinit var loginViewModel: LoginViewModel
     private lateinit var navController: NavHostController
 
     @Before
     fun setUp(){
+        hiltRule.inject()
+        loginViewModel = LoginViewModel()
         composeRule.activity.setContent {
             Endtoend_uitestingTheme {
                 navController = rememberNavController()
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                 ) {
-                    AppNavHost(
-                        modifier = Modifier.padding(it),
+                    NavHost(
+                        modifier =  Modifier.padding(it),
                         navController = navController,
-                    )
+                        startDestination = NavigationItem.Login.route
+                    ) {
+                        composable(NavigationItem.Login.route) {
+                            LoginScreen(
+                                onLoginClick = {
+                                    navController.navigate(NavigationItem.Home.route)
+                                },
+                                viewModel = loginViewModel
+                            )
+                        }
+                        composable(NavigationItem.Home.route) {
+                            HomeScreen(
+                                onLogoutClick = {
+                                    navController.navigate(NavigationItem.Login.route)
+                                }
+                            )
+                        }
+                    }
                 }
             }
         }
