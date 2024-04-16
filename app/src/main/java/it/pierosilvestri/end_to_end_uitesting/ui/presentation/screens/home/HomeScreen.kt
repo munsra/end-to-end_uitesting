@@ -1,4 +1,4 @@
-package it.pierosilvestri.end_to_end_uitesting.ui.presentation.screens
+package it.pierosilvestri.end_to_end_uitesting.ui.presentation.screens.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

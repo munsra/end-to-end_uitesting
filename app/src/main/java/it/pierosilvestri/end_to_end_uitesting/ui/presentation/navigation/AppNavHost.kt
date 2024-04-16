@@ -1,11 +1,12 @@
 package it.pierosilvestri.end_to_end_uitesting.ui.presentation.navigation
 
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import it.pierosilvestri.end_to_end_uitesting.ui.presentation.screens.HomeScreen
+import it.pierosilvestri.end_to_end_uitesting.ui.presentation.screens.home.HomeScreen
 import it.pierosilvestri.end_to_end_uitesting.ui.presentation.screens.login.LoginScreen
 
 @Composable
@@ -13,6 +14,7 @@ fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController,
     startDestination: String = NavigationItem.Login.route,
+    snackbarHostState: SnackbarHostState,
 ) {
     NavHost(
         modifier = modifier,
@@ -21,7 +23,8 @@ fun AppNavHost(
     ) {
         composable(NavigationItem.Login.route) {
             LoginScreen(
-                onLoginClick = {
+                snackbarHostState = snackbarHostState,
+                onLoginSuccess = {
                     navController.navigate(NavigationItem.Home.route)
                 }
             )
